@@ -1,0 +1,35 @@
+{
+  "name": "react-bouncing-balls",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=10.13"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --trailing-comma es5 --no-semi --write",
+      "eslint --quiet",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "lint-staged": "^8.2.1",
+    "react-scripts": "^3.0.1",
+    "react-test-renderer": "^16.9.0"
+  },
+  "browserslist": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+  ]
+}
+
