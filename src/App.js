@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Ball from './models/Ball';
 
 import './App.scss';
 
@@ -7,6 +8,7 @@ export default class App extends React.Component {
     super();
     this.canvas = {};
     this.ctx = {};
+    this.ballsArr = [];
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -19,18 +21,23 @@ export default class App extends React.Component {
   animate() {        
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    //requestAnimationFrame(() => this.animate());
+    this.ballsArr.forEach(ball => {
+      if (ball.posX + ball.radius >= this.canvas.width)
+        ball.setDirection('left');
+      
+      if (ball.posX < ball.radius)
+        ball.setDirection('right');
+
+      ball.move();
+      this.draw(ball);
+    });
+
+    requestAnimationFrame(() => this.animate());
   }
 
-  draw(posX, posY) {
-    const ball = {
-      posX,
-      posY,
-      radius: 2 * Math.PI
-    };
-
+  draw(ball) {
     this.ctx.beginPath();
-    this.ctx.fillStyle = '#ff00000';
+    this.ctx.fillStyle = ball.color;
     this.ctx.arc(
         ball.posX - (ball.radius/2),
         ball.posY - (ball.radius/2),
@@ -43,7 +50,14 @@ export default class App extends React.Component {
   };
 
   handleClick(evt) {
-    this.draw(evt.clientX, evt.clientY);
+    const ballProps = {
+      posX: evt.clientX,
+      posY: evt.clientY,
+      velX: 5
+    }
+    const ball = new Ball(ballProps);
+
+    this.ballsArr.push(ball);
   }
 
   render() {
