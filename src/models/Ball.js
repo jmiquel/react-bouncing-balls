@@ -9,6 +9,8 @@ export default class Ball {
   }
 
   move() {
+    this.velX = this.velX;
+
     if (this.direction === 'right')
       this.posX += this.velX;
     else

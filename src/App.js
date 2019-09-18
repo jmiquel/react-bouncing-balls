@@ -1,5 +1,6 @@
 import React from 'react';
 import Ball from './models/Ball';
+import getRandomNumber from './utils/getRandomNumber'
 
 import './App.scss';
 
@@ -53,7 +54,7 @@ export default class App extends React.Component {
     const ballProps = {
       posX: evt.clientX,
       posY: evt.clientY,
-      velX: 5
+      velX: getRandomNumber(0, 20)
     }
     const ball = new Ball(ballProps);
 
