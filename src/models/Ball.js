@@ -3,8 +3,8 @@ export default class Ball {
     this.posX = props.posX;
     this.posY = props.posY;
     this.velX = props.velX;
-    this.velY = 5;
-    this.radius = 2 * Math.PI;
+    this.velY = props.velY;
+    this.radius = props.size * Math.PI;
     this.color = props.color || '#f00';
     this.gravity = 0.5;
     this.damping = 0.7;
@@ -24,7 +24,7 @@ export default class Ball {
     // Changes direction when reaching either left or right of the canvas (Y axes)
     if(this.posY + this.radius >= this.maxPosY) {
         this.velY = -this.velY * this.damping;
-        this.posY = this.maxPosY - this.radius;
+        this.posY = this.maxPosY - (this.radius / 2);
         // Adds extra force (to pull down) when hitting the walls
         this.velX *= this.friction;
     } else if (this.posY - this.radius <= 0) {

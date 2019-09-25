@@ -34,11 +34,11 @@ export default class App extends React.Component {
     this.ctx.beginPath();
     this.ctx.fillStyle = ball.color;
     this.ctx.arc(
-        ball.posX - (ball.radius/2),
-        ball.posY - (ball.radius/2),
-        ball.radius,
-        0,
-        2 * Math.PI
+      ball.posX - (ball.radius/2),
+      ball.posY - (ball.radius/2),
+      ball.radius,
+      0,
+      2 * Math.PI
     );
     this.ctx.fill();
     this.ctx.closePath();
@@ -48,7 +48,9 @@ export default class App extends React.Component {
     const ballProps = {
       posX: evt.clientX,
       posY: evt.clientY,
+      size: getRandomNumber(1, 8),
       velX: getRandomNumber(0, 8),
+      velY: getRandomNumber(0, 15),
       maxPosY: 500,
       maxPosX: 1000
     }
@@ -65,7 +67,6 @@ export default class App extends React.Component {
             this.canvas = c
             this.ctx = c.getContext('2d')
           }}
-          className="bouncer"
           width='1000'
           height='500'
           onClick={this.handleClick}></canvas>
