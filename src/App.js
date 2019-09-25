@@ -23,12 +23,6 @@ export default class App extends React.Component {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ballsArr.forEach(ball => {
-      if (ball.posX + ball.radius >= this.canvas.width)
-        ball.setDirection('left');
-      
-      if (ball.posX < ball.radius)
-        ball.setDirection('right');
-
       ball.move();
       this.draw(ball);
     });
@@ -54,7 +48,9 @@ export default class App extends React.Component {
     const ballProps = {
       posX: evt.clientX,
       posY: evt.clientY,
-      velX: getRandomNumber(0, 20)
+      velX: getRandomNumber(0, 8),
+      maxPosY: 500,
+      maxPosX: 1000
     }
     const ball = new Ball(ballProps);
 
